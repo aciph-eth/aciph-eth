@@ -8,20 +8,60 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    permissions:
+      contents: write
 
-      - name: Generate Snake
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node (needed by snk)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Generate Snake SVG
+        # Platane/snk expects svg_out_path input name
         uses: Platane/snk@v3
         with:
           github_user_name: aciph-eth
-          outputs: dist/snake.svg
+          svg_out_path: dist/snake.svg
 
-      - name: Deploy Snake to Output Branch
-        uses: crazy-max/ghaction-github-pages@v3
-        with:
-          target_branch: output
-          build_dir: dist
+      - name: Show generated file (diagnostic)
+        run: |
+          echo "Listing dist/ directory:"
+          ls -la dist || true
+          if [ -f dist/snake.svg ]; then
+            echo "✅ dist/snake.svg exists"
+            echo "SVG size:"
+            ls -lh dist/snake.svg
+          else
+            echo "❌ dist/snake.svg NOT found"
+            exit 1
+          fi
+
+      - name: Commit and push snake.svg to output branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create or switch to a fresh orphan 'output' branch
+          if git show-ref --quiet refs/heads/output; then
+            git switch output
+          else
+            git switch --create output
+          fi
+
+          # Remove everything from the branch, then add the dist file
+          git rm -rf . >/dev/null 2>&1 || true
+          mkdir -p dist
+          cp -f dist/snake.svg dist/snake.svg
+
+          git add dist/snake.svg
+          git commit -m "Generate contribution snake" || echo "No changes to commit"
+          # Force push directly using token to ensure permission
+          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" output
