@@ -1,16 +1,36 @@
-## Hi there 👋
+# Hey there 👋, I'm Asif (aka aciph.eth)
 
-<!--
-**aciph-eth/aciph-eth** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+🌍 **Web3 Explorer** | 🐍 **Learning Python** | ⚡ **Blockchain Enthusiast**  
+🚀 Building ideas into reality, one commit at a time.
 
-Here are some ideas to get you started:
+---
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## 🚀 About Me
+- 🌱 Currently learning **Python fundamentals**  
+- ⚡ Exploring **Ethereum & Web3 development**  
+- ✨ Believer in **open-source & creative coding**
+
+---
+
+## 🛠️ Tech Stack
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Ethereum](https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=ethereum&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+
+---
+
+## 📊 GitHub Stats
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=aciph-eth&show_icons=true&theme=tokyonight)  
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=aciph-eth&layout=compact&theme=tokyonight)
+
+---
+
+## 📬 Connect
+- 📧 Email: [aciph.eth@proton.me](mailto:aciph.eth@proton.me)  
+- 🌐 ENS: **cryptasifi.eth**
+
+---
+
+✨ *"Code is the bridge between imagination and reality."*
