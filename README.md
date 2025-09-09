@@ -33,8 +33,8 @@
 
 ---
 
-### 🐍 Contribution Snake (fun animation)
-<img alt="Contribution Snake" src="https://raw.githubusercontent.com/DenverCoder1/github-readme-snake/master/snake.svg?user=aciph-eth&theme=dark" />
+### 🐍 Contribution Snake
+![Contribution Snake](https://raw.githubusercontent.com/aciph-eth/aciph-eth/output/snake.svg)
 
 > If this snake image doesn’t appear, wait a minute and refresh — it loads from a third-party raw URL.
 
