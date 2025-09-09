@@ -23,7 +23,6 @@ jobs:
           node-version: '18'
 
       - name: Generate Snake SVG
-        # Platane/snk expects svg_out_path input name
         uses: Platane/snk@v3
         with:
           github_user_name: aciph-eth
@@ -48,20 +47,16 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Create or switch to a fresh orphan 'output' branch
+          # Create or switch to output branch
           if git show-ref --quiet refs/heads/output; then
             git switch output
           else
             git switch --create output
           fi
-
-          # Remove everything from the branch, then add the dist file
+          # Clear branch and add the generated svg
           git rm -rf . >/dev/null 2>&1 || true
           mkdir -p dist
           cp -f dist/snake.svg dist/snake.svg
-
           git add dist/snake.svg
           git commit -m "Generate contribution snake" || echo "No changes to commit"
-          # Force push directly using token to ensure permission
           git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" output
