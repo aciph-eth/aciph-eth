@@ -1,6 +1,6 @@
 # Hiya 👋
 
-🐙 You've surfaced at aciph's git-vault. 🤿 Dive in. 🔣 Decode the layers.
+🐙 You've surfaced at āciph's git-vault. 🤿 Dive in. 🔣 Decode the layers.
 
  ---
 
