@@ -1,26 +1,22 @@
-name: Generate Snake Animation
+name: Generate and publish contribution snake (peaceiris + inline SVG)
 
 on:
-  schedule:
-    - cron: "0 0 * * *"
+  push:
+    branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository (full history)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Set up Node (needed by snk)
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
 
       - name: Generate Snake SVG
         uses: Platane/snk@v3
@@ -28,35 +24,61 @@ jobs:
           github_user_name: aciph-eth
           svg_out_path: dist/snake.svg
 
-      - name: Show generated file (diagnostic)
+      - name: Verify dist/snake.svg exists
         run: |
-          echo "Listing dist/ directory:"
+          echo "Listing dist folder:"
           ls -la dist || true
           if [ -f dist/snake.svg ]; then
-            echo "✅ dist/snake.svg exists"
-            echo "SVG size:"
-            ls -lh dist/snake.svg
+            echo "✅ dist/snake.svg found"
+            wc -c dist/snake.svg
           else
             echo "❌ dist/snake.svg NOT found"
             exit 1
           fi
 
-      - name: Commit and push snake.svg to output branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create public folder and inline SVG into index.html
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Create or switch to output branch
-          if git show-ref --quiet refs/heads/output; then
-            git switch output
-          else
-            git switch --create output
-          fi
-          # Clear branch and add the generated svg
-          git rm -rf . >/dev/null 2>&1 || true
-          mkdir -p dist
-          cp -f dist/snake.svg dist/snake.svg
-          git add dist/snake.svg
-          git commit -m "Generate contribution snake" || echo "No changes to commit"
-          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" output
+          mkdir -p public
+
+          # Create index.html header
+          cat > public/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width,initial-scale=1" />
+            <title>Contribution snake</title>
+            <style>
+              html,body { height:100%; margin:0; display:flex; align-items:center; justify-content:center; background:#fff; }
+              svg { max-width:95vw; max-height:95vh; display:block; }
+            </style>
+          </head>
+          <body>
+          HTML
+
+          # Append the SVG content, but remove a possible leading XML declaration (<?xml ... ?>)
+          sed '1{/^<\?xml/ d}' dist/snake.svg >> public/index.html
+
+          # Close body/html
+          cat >> public/index.html <<'HTML'
+          </body>
+          </html>
+          HTML
+
+          # Also copy the raw svg for debugging / direct access if desired
+          cp -f dist/snake.svg public/snake.svg
+
+          echo "public/ contents:"
+          ls -la public
+
+      - name: Publish to GitHub Pages (branch: output) using peaceiris
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: output
+          # optional: set a friendly commit message
+          commit_message: "ci: publish generated contribution snake [skip ci]"
+
+      - name: Done
+        run: echo "Published public/ to branch 'output'. Set Pages to serve from branch 'output' / root if not already set."
