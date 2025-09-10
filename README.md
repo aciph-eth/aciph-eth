@@ -34,7 +34,7 @@
 
 ---
 
-## 🐍 Snake-ing it all up
+## 🐍 Snake is snacking it all up
 ![Contribution Snake](https://raw.githubusercontent.com/aciph-eth/aciph-eth/output/snake.svg)
 
 ---
