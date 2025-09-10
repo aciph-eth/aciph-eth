@@ -16,7 +16,7 @@
 ## 🛠️ How's my Tech Stack-ing up
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-![Blockchain](https://img.shields.io/badge/Blockchain-3C3C3D?style=for-the-badge&logo=blockchain&logoColor=white)
+![Blockchain](https://img.shields.io/badge/Blockchain-3776AB?style=for-the-badge&logo=blockchain&logoColor=white)
 ![Web3](https://img.shields.io/badge/Web3-3C3C3D?style=for-the-badge&logo=web3&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 ![VS Code](https://img.shields.io/badge/VS%20Code-0078D4?style=for-the-badge&logo=visual-studio-code&logoColor=white)
