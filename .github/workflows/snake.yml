@@ -21,9 +21,9 @@ jobs:
         uses: Platane/snk@v3
         with:
           github_user_name: aciph-eth
-          # send CLI flags via `args` so the action passes them to the tool
-          # try both common flag spellings; the action will interpret args
-          args: "--svg_out_path dist/snake.svg"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          outputs: |
+            dist/snake.svg
 
       - name: Verify generated SVG exists
         run: |
