@@ -22,8 +22,8 @@
 ---
 
 ## 📊 GitHub Stats
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=aciph-eth&show_icons=true&theme=tokyonight)  
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=aciph-eth&layout=compact&theme=tokyonight)  
+![aciph-eth's GitHub stats](https://github-readme-stats.vercel.app/api?username=aciph-eth&show_icons=true&theme=tokyonight&include_all_commits=true&cache_bust=1)
+![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=aciph-eth&layout=compact&theme=tokyonight&cache_bust=1)
 
 ---
 
