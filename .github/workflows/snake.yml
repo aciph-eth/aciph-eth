@@ -39,14 +39,12 @@ jobs:
       - name: Create public folder and inline SVG into index.html (YAML-safe)
         run: |
           set -eo pipefail
-
           mkdir -p public
 
           # Write the HTML header to public/index.html using printf (avoids heredoc YAML issues)
           printf '%s\n' '<!doctype html>' '<html lang="en">' '<head>' '  <meta charset="utf-8" />' '  <meta name="viewport" content="width=device-width,initial-scale=1" />' '  <title>Contribution snake</title>' '  <style>' '    html,body { height:100%; margin:0; display:flex; align-items:center; justify-content:center; background:#fff; }' '    svg { max-width:95vw; max-height:95vh; display:block; }' '  </style>' '</head>' '<body>' > public/index.html
 
-          # Append the SVG content to the HTML file but skip a leading XML declaration if present.
-          # Use sed to delete the first line if it matches an XML declaration.
+          # If dist/snake.svg begins with an XML declaration, remove it; otherwise append as-is
           if sed -n '1p' dist/snake.svg | grep -q '^<\?xml'; then
             sed '1d' dist/snake.svg >> public/index.html
           else
