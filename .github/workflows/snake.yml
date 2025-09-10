@@ -38,34 +38,37 @@ jobs:
 
       - name: Create public folder and inline SVG into index.html
         run: |
+          set -eo pipefail
+
           mkdir -p public
 
           # Create index.html header
           cat > public/index.html <<'HTML'
-          <!doctype html>
-          <html lang="en">
-          <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width,initial-scale=1" />
-            <title>Contribution snake</title>
-            <style>
-              html,body { height:100%; margin:0; display:flex; align-items:center; justify-content:center; background:#fff; }
-              svg { max-width:95vw; max-height:95vh; display:block; }
-            </style>
-          </head>
-          <body>
-          HTML
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contribution snake</title>
+  <style>
+    html,body { height:100%; margin:0; display:flex; align-items:center; justify-content:center; background:#fff; }
+    svg { max-width:95vw; max-height:95vh; display:block; }
+  </style>
+</head>
+<body>
+HTML
 
-          # Append the SVG content, but remove a possible leading XML declaration (<?xml ... ?>)
-          sed '1{/^<\?xml/ d}' dist/snake.svg >> public/index.html
+          # Append the SVG content but skip the leading XML declaration if present.
+          # Use awk to be robust with shell/YAML quoting.
+          awk 'NR==1 && $0 ~ /^<\\?xml/ {next} {print}' dist/snake.svg >> public/index.html
 
           # Close body/html
           cat >> public/index.html <<'HTML'
-          </body>
-          </html>
-          HTML
+</body>
+</html>
+HTML
 
-          # Also copy the raw svg for debugging / direct access if desired
+          # Also copy the raw svg for direct access if desired
           cp -f dist/snake.svg public/snake.svg
 
           echo "public/ contents:"
@@ -77,8 +80,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: output
-          # optional: set a friendly commit message
           commit_message: "ci: publish generated contribution snake [skip ci]"
 
       - name: Done
-        run: echo "Published public/ to branch 'output'. Set Pages to serve from branch 'output' / root if not already set."
+        run: echo "Published public/ to branch 'output'. Ensure Pages is set to serve branch 'output' / root."
