@@ -14,7 +14,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ How's my Tech Stack-ing up
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 ![Blockchain](https://img.shields.io/badge/Blockchain-3C3C3D?style=for-the-badge&logo=blockchain&logoColor=white)
@@ -24,28 +24,28 @@
 
 ---
 
-## 📊 GitHub Stats
+## 📊 My GitHub Stat(u)s
 ![aciph-eth's GitHub stats](https://github-readme-stats.vercel.app/api?username=aciph-eth&show_icons=true&theme=tokyonight&include_all_commits=true&cache_bust=4)
 ![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=aciph-eth&layout=compact&theme=tokyonight&cache_bust=3)
 
 ---
 
-## 🔥 Streak & Contribution Cards
+## 🔥 My Streaks & Contris
 ![Streak](https://github-readme-streak-stats.herokuapp.com/?user=aciph-eth&theme=tokyonight)  
 
 ---
 
-## 🐍 Contribution Snake
+## 🐍 Snake-ing Up
 ![Contribution Snake](https://raw.githubusercontent.com/aciph-eth/aciph-eth/output/snake.svg)
 
 ---
 
-## 📈 Profile Visitors
+## 📈 Eyeballs I Get
 ![Visitor Count](https://komarev.com/ghpvc/?username=aciph-eth&color=blue&style=flat-square)
 
 ---
 
-## 📫 Connect
+## 📫 Let's Catch Up
 - 📧 Email: [aciph.eth@proton.me](mailto:aciph.eth@proton.me)  
 - 🌐 ENS: [cryptasifi.eth](https://app.ens.domains/name/cryptasifi.eth)
 
