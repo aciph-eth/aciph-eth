@@ -1,4 +1,4 @@
-name: Generate and publish contribution snake (peaceiris + inline SVG)
+name: Generate and publish contribution snake
 
 on:
   push:
@@ -11,9 +11,8 @@ permissions:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository (full history)
+      - name: Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -24,49 +23,40 @@ jobs:
           github_user_name: aciph-eth
           svg_out_path: dist/snake.svg
 
-      - name: Verify dist/snake.svg exists
+      - name: Verify generated SVG exists
         run: |
-          echo "Listing dist folder:"
+          set -eo pipefail
+          echo "Files in workspace root:"
+          ls -la
+          echo "Files in dist/:"
           ls -la dist || true
-          if [ -f dist/snake.svg ]; then
-            echo "✅ dist/snake.svg found"
-            wc -c dist/snake.svg
-          else
-            echo "❌ dist/snake.svg NOT found"
+          if [ ! -f dist/snake.svg ]; then
+            echo "ERROR: dist/snake.svg not found"
             exit 1
           fi
+          echo "Found dist/snake.svg (size):"
+          wc -c dist/snake.svg
 
-      - name: Create public folder and inline SVG into index.html (YAML-safe)
+      - name: Create public/ with inlined SVG
         run: |
           set -eo pipefail
           mkdir -p public
-
-          # Write the HTML header to public/index.html using printf (avoids heredoc YAML issues)
-          printf '%s\n' '<!doctype html>' '<html lang="en">' '<head>' '  <meta charset="utf-8" />' '  <meta name="viewport" content="width=device-width,initial-scale=1" />' '  <title>Contribution snake</title>' '  <style>' '    html,body { height:100%; margin:0; display:flex; align-items:center; justify-content:center; background:#fff; }' '    svg { max-width:95vw; max-height:95vh; display:block; }' '  </style>' '</head>' '<body>' > public/index.html
-
-          # If dist/snake.svg begins with an XML declaration, remove it; otherwise append as-is
+          # write simple header
+          printf '%s\n' '<!doctype html>' '<html>' '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contribution snake</title></head>' '<body>' > public/index.html
+          # strip possible XML declaration from SVG then append
           if sed -n '1p' dist/snake.svg | grep -q '^<\?xml'; then
             sed '1d' dist/snake.svg >> public/index.html
           else
             cat dist/snake.svg >> public/index.html
           fi
-
-          # Close the HTML
           printf '%s\n' '</body>' '</html>' >> public/index.html
-
-          # Also copy the raw svg for direct access if desired
           cp -f dist/snake.svg public/snake.svg
-
-          echo "public/ contents:"
+          echo "public/ contains:"
           ls -la public
 
-      - name: Publish to GitHub Pages (branch: output) using peaceiris
+      - name: Publish public/ to branch output
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: output
-          commit_message: "ci: publish generated contribution snake [skip ci]"
-
-      - name: Done
-        run: echo "Published public/ to branch 'output'. Ensure Pages is set to serve branch 'output' / root."
