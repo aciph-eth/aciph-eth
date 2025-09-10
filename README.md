@@ -1,14 +1,16 @@
-# Hey there 👋, I'm Asif (aka aciph.eth)
+# Hiya there 👋 You've reached aciph.eth's git🐙
 
-🌍 Web3 Explorer | 🐍 Learning Python | ⚡ Blockchain Enthusiast  
-🚀 Building ideas into reality, one commit at a time.
+🌍 Web3 Navigator | 🐍 Python Protagonist | ⚡ Blockchain Evangeist  
+🚀 Transforming ideas into reality, one commit at a time.
 
 ---
 
-## 🚀 About Me
-- 🌱 Currently learning **Python fundamentals**  
-- ⚡ Exploring **Ethereum & Web3 development**  
-- ✨ Believer in **open-source & creative coding**  
+## 🛠️ Rituals of the Builder
+
+- 🧬 Languages: **Python & JS** — my evolving DNA  
+- 🛰️ Frontier: **Blockchain & Web3** — where I chart new frontiers  
+- 🌀 Belief: **Open-source & creative coding** — the pulse of shared creation  
+- 🪷 Mantra: **Code is the bridge between imagination and reality**
 
 ---
 
@@ -47,5 +49,3 @@
 - 🌐 ENS: [cryptasifi.eth](https://app.ens.domains/name/cryptasifi.eth)
 
 ---
-
-✨ *"Code is the bridge between imagination and reality."*
