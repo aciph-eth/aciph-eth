@@ -1,4 +1,4 @@
-# Hiya there 👋 You've reached aciph.eth's git🐙
+# Hiya there 👋 You've reached aciph's git🐙
 
 🌍 Web3 Navigator | 🐍 Python Protagonist | ⚡ Blockchain Evangeist  
 🚀 Transforming ideas into reality, one commit at a time.
