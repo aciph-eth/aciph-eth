@@ -1,9 +1,8 @@
-# Hiya there 👋 You've reached aciph's git🐙
+# Hiya 👋
 
-🌍 Web3 Navigator | 🐍 Python Protagonist | ⚡ Blockchain Evangeist  
-🚀 Transforming ideas into reality, one commit at a time.
+🐙 You've surfaced at aciph's git-vault. 🤿 Dive in. 🔣 Decode the layers.
 
----
+ ---
 
 ## 🧘‍♂My Cred & Karma
 
@@ -35,7 +34,7 @@
 
 ---
 
-## 🐍 Snake-ing Up
+## 🐍 Snake-ing it all up
 ![Contribution Snake](https://raw.githubusercontent.com/aciph-eth/aciph-eth/output/snake.svg)
 
 ---
