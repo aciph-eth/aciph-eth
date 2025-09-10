@@ -17,11 +17,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Generate Snake SVG
+      - name: Generate Snake SVG (Platane/snk)
         uses: Platane/snk@v3
         with:
           github_user_name: aciph-eth
-          svg_out_path: dist/snake.svg
+          # send CLI flags via `args` so the action passes them to the tool
+          # try both common flag spellings; the action will interpret args
+          args: "--svg_out_path dist/snake.svg"
 
       - name: Verify generated SVG exists
         run: |
@@ -41,9 +43,7 @@ jobs:
         run: |
           set -eo pipefail
           mkdir -p public
-          # write simple header
           printf '%s\n' '<!doctype html>' '<html>' '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contribution snake</title></head>' '<body>' > public/index.html
-          # strip possible XML declaration from SVG then append
           if sed -n '1p' dist/snake.svg | grep -q '^<\?xml'; then
             sed '1d' dist/snake.svg >> public/index.html
           else
